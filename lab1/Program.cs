@@ -4,8 +4,21 @@ namespace InheritanceDemo
 {
     public class Square
     {
-        public double SideLength { get; set; }
-        public string Color { get; set; }
+        private double sideLength;
+        public double SideLength
+        {
+            get { return sideLength; }
+            set
+            {
+                if (value <= 0)
+                {
+                    throw new ArgumentException("Side length must be greater than zero.");
+                }
+                sideLength = value;
+            }
+        }
+
+        public string? Color { get; set; }
 
         public double Area => SideLength * SideLength;
         public double Perimeter => 4 * SideLength;
@@ -22,7 +35,7 @@ namespace InheritanceDemo
 
         public new double Area => SideLength * Width;
         public double AspectRatio => Width / SideLength;
-        public double Perimeter => 2 * (SideLength + Width);
+        public new double Perimeter => 2 * (SideLength + Width);
 
         public new void ShowProperties()
         {
@@ -34,11 +47,22 @@ namespace InheritanceDemo
     {
         static void Main(string[] args)
         {
-            Square square = new Square { SideLength = 5, Color = "Red" };
-            Rectangle rectangle = new Rectangle { SideLength = 5, Width = 10, Color = "Blue" };
+            try
+            {
+                Square square1 = new Square { SideLength = 5, Color = "Red" };
+                Rectangle rectangle = new Rectangle { SideLength = 5, Width = 10, Color = "Blue" };
 
-            square.ShowProperties();
-            rectangle.ShowProperties();
+                square1.ShowProperties();
+                rectangle.ShowProperties();
+
+                // Create another square with a negative side length to trigger the exception.
+                Square square2 = new Square { SideLength = -5, Color = "Green" };
+                square2.ShowProperties();
+            }
+            catch (ArgumentException e)
+            {
+                Console.WriteLine($"An error occurred: {e.Message}");
+            }
         }
     }
 }
