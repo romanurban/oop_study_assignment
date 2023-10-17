@@ -4,7 +4,9 @@ namespace InheritanceDemo
 {
     public class Square
     {
+        // encapsulated property
         private double sideLength;
+        // public getter/setter
         public double SideLength
         {
             get { return sideLength; }
@@ -50,6 +52,7 @@ namespace InheritanceDemo
             try
             {
                 Square square1 = new Square { SideLength = 5, Color = "Red" };
+                // rectangle that inherits square
                 Rectangle rectangle = new Rectangle { SideLength = 5, Width = 10, Color = "Blue" };
 
                 square1.ShowProperties();
