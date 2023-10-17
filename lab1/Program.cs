@@ -55,7 +55,7 @@ namespace InheritanceDemo
                 square1.ShowProperties();
                 rectangle.ShowProperties();
 
-                // Create another square with a negative side length to trigger the exception.
+                // Square with a negative side length to trigger an ArgumentException
                 Square square2 = new Square { SideLength = -5, Color = "Green" };
                 square2.ShowProperties();
             }
