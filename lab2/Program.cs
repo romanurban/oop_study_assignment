@@ -141,7 +141,7 @@ namespace GeometricalShapes
                 
             }
 
-            // Display details
+            // display details
             foreach (Shape shape in shapes)
             {
                 shape.ShowProperties();
